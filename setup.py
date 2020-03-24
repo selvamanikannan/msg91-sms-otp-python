@@ -7,6 +7,6 @@ setup(name='sendotp',
       author='Selvamani Kannan',
       author_email='selvamanikannan55@gmail.com',
       license='MIT',
-      packages=['sendsms'],
+      packages=['sms91_otp_sms'],
       install_requires=['requests']
       zip_safe=False)

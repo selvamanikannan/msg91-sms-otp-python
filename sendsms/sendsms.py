@@ -3,7 +3,7 @@ import requests
 import  random
 import json
 
-class sendsms:
+class sms91_otp_sms:
 	def __init__(self, key, sender,lenn):
 		if self.lenn is None or <4:
 			self.length = 4
