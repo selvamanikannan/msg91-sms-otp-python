@@ -3,12 +3,13 @@ import requests
 import  random
 import json
 
-class sms91_otp_sms:
-	def __init__(self, key, sender,lenn):
-		if self.lenn is None or <4:
-			self.length = 4
-		else:
-			self.length = lenn;
+class SMSClient:
+
+	def initialize(self, key, sender,lenn=4):
+		# if lenn is None or lenn <4:
+		# 	self.length = 4
+		# else:
+		# 	self.length = lenn;
 			
 		self.otp = "Your otp is {{otp}}. Please do not share it with anybody"
 		self.headers = {'Content-type': 'application/json', 'authkey':key}
@@ -26,26 +27,13 @@ class sms91_otp_sms:
 
 	def sendMessgae(self,data,phno):
 		self.payload["sms"] = [{"message":data,"to":phno}]
+		self.sendRequest()
 
 	def sendOtp(self,phno):
 		rand = random.randrange(10**(self.length-1), 10**self.length)
 		data = self.otp.replace("{{otp}}",str(rand))
 		self.payload["sms"] = [{"message":data,"to":phno}]
 
-	def printt(self):
+	def sendRequest(self):
 		r = requests.post(self.url, data=json.dumps(self.payload), headers=self.headers)
 		print(r.content)
-		print(self.payload)
-		print(self.headers)
-
-
-if __name__ == '__main__':
-	otpobj = sendsms('313526A2RuWoJ94TkI5e20af18P1','selvam',6)
-	otpobj.sendMessgae('vanakkam da maplaa',["9659872073","8428720872"])
-	otpobj.printt()
-	otpobj.sendOtp(["9659872073","8428720872"])
-	otpobj.printt()
-	otpobj.changeOtp("tahmbi unga otp inthanga {{otp}}")
-	otpobj.sendOtp(["1111","234"])
-	otpobj.printt()
-
